@@ -19,3 +19,8 @@ Then run
 ```
 python3 assessments2csv.py assessments
 ```
+this will generate the `assessments.csv` files with one row per audio file, and the following fields:
+```
+File name,Score,Prosody,Noise/Disruption,Pre-speech noise,Repetition,Word,Pronunciation,pronScores
+```
+Both the 'Pronunciation' and 'pronScores' columns contain space separated items to cope with the fact that pronunciations can be of different lengths.
