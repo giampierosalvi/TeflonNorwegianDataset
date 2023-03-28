@@ -4,9 +4,18 @@ Scripts for the Norwegian version of the Teflon database. Note: this repository 
 ## Instructions
 Install dependencies:
 ```
-pip install openpyxl
+pip install openpyxl pandas
 ```
-Download the annotations zip file and unzip it. Then run
+Download the annotations zip file and unzip it and fix some filenames:
 ```
-annotations2csv.py path_to_annotations
+unzip 2023-03-02.zip
+unzip All\ words.zip
+unzip assessments.zip
+rm -rf 023-03-02.zip All\ words.zip assessments.zip __MACOSX
+mv All\ words speech
+mv assessments/hund\ \(1\).xlsx assessments/hund.xlsx
+```
+Then run
+```
+python3 assessments2csv.py assessments
 ```
