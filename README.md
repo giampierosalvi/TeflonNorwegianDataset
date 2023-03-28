@@ -17,5 +17,5 @@ mv assessments/hund\ \(1\).xlsx assessments/hund.xlsx
 ```
 Then run
 ```
-annotations2csv.py annotations
+annotations2csv.py assessments
 ```
