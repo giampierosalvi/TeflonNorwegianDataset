@@ -4,7 +4,7 @@ Scripts for the Norwegian version of the Teflon database. Note: this repository 
 ## Instructions
 Install dependencies:
 ```
-pip install openpyxl
+pip install openpyxl pandas
 ```
 Download the annotations zip file and unzip it and fix some filenames:
 ```
