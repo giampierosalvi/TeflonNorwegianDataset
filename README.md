@@ -24,3 +24,8 @@ this will generate the `assessments.csv` files with one row per audio file, and 
 File name,Score,Prosody,Noise/Disruption,Pre-speech noise,Repetition,Word,Pronunciation,pronScores
 ```
 Both the 'Pronunciation' and 'pronScores' columns contain space separated items to cope with the fact that pronunciations can be of different lengths.
+
+You can verify the data with:
+```
+python3 verify.py assessments.csv speech
+```
