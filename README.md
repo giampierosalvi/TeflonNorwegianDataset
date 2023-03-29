@@ -14,7 +14,14 @@ unzip assessments.zip
 rm -rf 023-03-02.zip All\ words.zip assessments.zip __MACOSX
 mv All\ words speech
 mv assessments/hund\ \(1\).xlsx assessments/hund.xlsx
+mv assessments/grå.xlsx assessments/grå.xlsx
 ```
+Then run
+```
+python3 fix_excel.py
+```
+to fix the sheet names according to the assessor.
+
 Then run
 ```
 python3 assessments2csv.py assessments

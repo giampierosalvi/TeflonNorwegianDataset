@@ -1,18 +1,14 @@
 import glob
 import sys
 import re
+import openpyxl
 import pandas as pd
 
 dir_path = sys.argv[1]
 
 df = pd.DataFrame()
 
-for filename in glob.glob(dir_path + '/*.xlsx'):
-    match = re.search(r'([^/]*).xlsx', filename)
-    word = str(match.group(1)) # str is to ensure unicode
-    if word == 'who did what':
-        continue
-    excel_data = pd.read_excel(filename)
+def parseExcelData(excel_data, assessor):
     keylist = list(excel_data.keys())
     # find pronunciation start and end column
     pronstart = keylist.index('Score')+1
@@ -29,6 +25,17 @@ for filename in glob.glob(dir_path + '/*.xlsx'):
     excel_data['Word'] = word
     excel_data['Pronunciation'] = pronunciation
     excel_data['pronScores'] = pronScores
-    df = pd.concat((df, excel_data))
+    excel_data['Assessor'] = assessor
+    return excel_data    
+
+for filename in glob.glob(dir_path + '/*.xlsx'):
+    match = re.search(r'([^/]*).xlsx', filename)
+    word = str(match.group(1)) # str is to ensure unicode
+    if word == 'who did what':
+        continue
+    assessors = [worksheet.title for worksheet in openpyxl.load_workbook(filename).worksheets]
+    for assessor in assessors:
+        excel_data = pd.read_excel(filename, sheet_name=assessor)
+        df = pd.concat((df, parseExcelData(excel_data, assessor)))
 
 df.to_csv(dir_path + '.csv', index=False)
