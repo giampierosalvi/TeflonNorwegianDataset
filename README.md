@@ -15,20 +15,22 @@ rm -rf 023-03-02.zip All\ words.zip assessments.zip __MACOSX
 mv All\ words speech
 mv assessments/hund\ \(1\).xlsx assessments/hund.xlsx
 mv assessments/grå.xlsx assessments/grå.xlsx
+mv assessments/blå.xlsx assessments/blå.xlsx
+mv assessments/tårn.xlsx assessments/tårn.xlsx
 ```
 Then run
 ```
-python3 fix_excel.py
+python3 fix_excel.py assessments
 ```
 to fix the sheet names according to the assessor.
 
 Then run
 ```
-python3 assessments2csv.py assessments
+python3 assessments2csv.py assessments_fixed
 ```
-this will generate the `assessments.csv` files with one row per audio file, and the following fields:
+this will generate the `assessments_fixed.csv` files with one row per audio file, and the following fields:
 ```
-File name,Score,Prosody,Noise/Disruption,Pre-speech noise,Repetition,Word,Pronunciation,pronScores
+File name,Score,Prosody,Noise/Disruption,Pre-speech noise,Repetition,Word,Pronunciation,pronScores,Assessor
 ```
 Both the 'Pronunciation' and 'pronScores' columns contain space separated items to cope with the fact that pronunciations can be of different lengths.
 
