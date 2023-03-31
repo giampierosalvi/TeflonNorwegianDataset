@@ -9,7 +9,7 @@ dir_path = sys.argv[1]
 df = pd.DataFrame()
 
 def parseExcelData(excel_data, assessor):
-    keylist = list(excel_data.keys())
+    keylist = [re.sub(r'\..*', '', key) for key in excel_data.keys()]
     # find pronunciation start and end column
     pronstart = keylist.index('Score')+1
     pronend = keylist.index('Prosody')
