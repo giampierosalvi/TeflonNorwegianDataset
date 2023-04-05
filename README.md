@@ -18,6 +18,10 @@ mv assessments/grå.xlsx assessments/grå.xlsx
 mv assessments/blå.xlsx assessments/blå.xlsx
 mv assessments/tårn.xlsx assessments/tårn.xlsx
 ```
+Check the `who did what.xlsx` file:
+```
+python3 check_who_did_what.py assessments
+```
 Then run
 ```
 python3 fix_excel.py assessments
