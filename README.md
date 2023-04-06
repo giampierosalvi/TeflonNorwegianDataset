@@ -6,7 +6,7 @@ Install dependencies:
 ```
 pip install openpyxl pandas playsound
 ```
-Download the annotations zip file and unzip it and fix some filenames:
+Download the annotations zip files and unzip it and fix some filenames:
 ```
 unzip 2023-03-02.zip
 unzip All\ words.zip
@@ -32,7 +32,7 @@ Then run
 ```
 python3 assessments2csv.py assessments_fixed
 ```
-this will generate the `assessments_fixed.csv` files with one row per audio file, and the following fields:
+this will generate the `assessments_fixed.csv` file with one row per audio file, and the following fields:
 ```
 File name,Score,Prosody,Noise/Disruption,Pre-speech noise,Repetition,Word,Pronunciation,pronScores,Assessor
 ```
