@@ -4,7 +4,7 @@ Scripts for the Norwegian version of the Teflon database. Note: this repository 
 ## Instructions
 Install dependencies:
 ```
-pip install openpyxl pandas
+pip install openpyxl pandas playsound
 ```
 Download the annotations zip file and unzip it and fix some filenames:
 ```
@@ -41,4 +41,9 @@ Both the 'Pronunciation' and 'pronScores' columns contain space separated items 
 You can verify the data with:
 ```
 python3 verify.py assessments.csv speech
+```
+
+You can play the examples and show the assessments with:
+```
+python3 play_examples.py assessments_fixed.csv speech
 ```
