@@ -5,8 +5,9 @@ import os
 import sys
 
 dir_path = sys.argv[1]
+dest_path = sys.argv[2]
 try:
-    os.mkdir(dir_path+'_fixed')
+    os.mkdir(dest_path)
 except:
     print('directory exists, continuing anyway...')
 
@@ -19,7 +20,7 @@ for word in who['Both']:
     # only get the first string in case there are more and take lower case
     word = word.split()[0].lower()
     excel_data = openpyxl.load_workbook(dir_path + '/' + word + '.xlsx')
-    excel_data.save(dir_path + '_fixed/' + word + '.xlsx')
+    excel_data.save(dest_path + '/' + word + '.xlsx')
 
 # modify the title of the sheet in these cases
 for assessor in ['Anne Marte', 'Jeanett']:
@@ -31,4 +32,4 @@ for assessor in ['Anne Marte', 'Jeanett']:
         excel_data = openpyxl.load_workbook(dir_path + '/' + word + '.xlsx')
         sheet = excel_data.worksheets[0]
         sheet.title = assessor
-        excel_data.save(dir_path + '_fixed/' + word + '.xlsx')
+        excel_data.save(dest_path + '/' + word + '.xlsx')
