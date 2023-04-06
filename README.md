@@ -1,5 +1,5 @@
 # TeflonNorwegianDataset
-Scripts for the Norwegian version of the Teflon database. Note: this repository does not contain the data, but only scripts to convert the annotations into a csv file.
+Scripts for the Norwegian version of the Teflon database. Note: this repository does not contain the data, but only scripts to convert the annotations into a csv file. If you have access to the NTNU servers, the zip files mentioned below are available under `/talebase/data/speech_raw/teflon_no/downloads`
 
 ## Instructions
 Install dependencies:
@@ -10,10 +10,10 @@ Download the annotations zip file and unzip it and fix some filenames:
 ```
 unzip 2023-03-02.zip
 unzip All\ words.zip
-unzip assessments.zip
-rm -rf 023-03-02.zip All\ words.zip assessments.zip __MACOSX
+unzip assessments2023-03-29.zip
+rm -rf 2023-03-02.zip All\ words.zip assessments.zip assessments2023-03-29.zip __MACOSX
 mv All\ words speech
-mv assessments/hund\ \(1\).xlsx assessments/hund.xlsx
+mv Word\ Assesments\ -\ Excel\ files assessments
 mv assessments/grå.xlsx assessments/grå.xlsx
 mv assessments/blå.xlsx assessments/blå.xlsx
 mv assessments/tårn.xlsx assessments/tårn.xlsx
