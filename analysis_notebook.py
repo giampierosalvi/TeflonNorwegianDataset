@@ -19,12 +19,8 @@
 import numpy as np
 import pandas as pd
 
-
-
 column_names = ['submission_id', 'time', 'agreement', 'speaker_id', 'age', 'current_grade', 'gender', 'birth_country', 'immigration_age', 'exposed_to_dialect_oslo', 'exposed_to_dialect_other', 'exposed_to_dialect_region', 'first_language', 'second_language', 'third_language', 'fourth_language', 'first_language_level', 'second_language_level', 'third_language_level', 'fourth_language_level', 'used_languages', 'first_language_use', 'second_language_use', 'third_language_use', 'fourth_language_use', 'answer_time_ms']
 data = pd.read_excel('data/Participant_Information_anonymised.xlsx', names=column_names)
-
-data['age'].unique()
 
 # fix ages
 age_map = {
@@ -49,8 +45,6 @@ gender_map = {
 data['gender'] = data['gender'].map(gender_map)
 #data['gender'].unique()
 
-data['birth_country'].unique()
-
 # Fix country
 country_map = dict()
 for country in data['birth_country'].unique():
@@ -60,8 +54,6 @@ country_map['Norsk'] = 'Norway'
 country_map['Ukrania'] = 'Ukraine'
 country_map['Norway, but lived in the UK from age 3-10'] = 'Norway'
 data['birth_country']= data['birth_country'].map(country_map)
-
-data['first_language'].unique()
 
 # Fix language
 language_map = dict()
@@ -76,5 +68,22 @@ language_map['Norsk'] = 'Norwegian'
 data['first_language'] = data['first_language'].map(language_map)
 
 data
+
+uttdata = pd.read_csv('~/corpora/teflon_no/assessments.csv')
+
+uttdata
+
+uttdata['Speaker ID'] = [fn.split('_')[0] for fn in uttdata['File name']]
+
+uttdata
+
+scorehist = uttdata.groupby(['Speaker ID', 'Score']).size()
+
+scoremeans = uttdata.groupby(['Speaker ID'])['Score'].mean()
+scoremeans
+
+scorehist.to_frame(name='count') #.pivot(index = 'Speaker ID', columns='Score', values='count')
+
+uttdata.pivot(index='Speaker ID', columns='Score')
 
 
