@@ -19,7 +19,7 @@
 import numpy as np
 import pandas as pd
 
-column_names = ['submission_id', 'time', 'agreement', 'speaker_id', 'age', 'current_grade', 'gender', 'birth_country', 'immigration_age', 'exposed_to_dialect_oslo', 'exposed_to_dialect_other', 'exposed_to_dialect_region', 'first_language', 'second_language', 'third_language', 'fourth_language', 'first_language_level', 'second_language_level', 'third_language_level', 'fourth_language_level', 'used_languages', 'first_language_use', 'second_language_use', 'third_language_use', 'fourth_language_use', 'answer_time_ms']
+column_names = ['Submission ID', 'Time', 'Agreement', 'Speaker ID', 'Age', 'Current Grade', 'Gender', 'Birth Country', 'Immigration Age', 'Exposed To Dialect Oslo', 'Exposed To Dialect Other', 'Exposed To Dialect Region', 'First Language', 'Second Language', 'Third Language', 'Fourth Language', 'First Language Level', 'Second Language Level', 'Third Language Level', 'Fourth Language Level', 'Used Languages', 'First Language Use', 'Second Language Use', 'Third Language Use', 'Fourth Language Use', 'Answer Time ms']
 data = pd.read_excel('data/Participant_Information_anonymised.xlsx', names=column_names)
 
 # fix ages
@@ -33,7 +33,7 @@ age_map = {
 }
 for age in range(4,13):
     age_map[str(age)] = age
-data['age'] = data['age'].map(age_map)
+data['Age'] = data['Age'].map(age_map)
 
 # fix genders
 gender_map = {
@@ -42,22 +42,22 @@ gender_map = {
     'Gutt': 'M',
     'Jente': 'F'
 }
-data['gender'] = data['gender'].map(gender_map)
+data['gender'] = data['Gender'].map(gender_map)
 #data['gender'].unique()
 
 # Fix country
 country_map = dict()
-for country in data['birth_country'].unique():
+for country in data['Birth Country'].unique():
     country_map[country] = country
 country_map['Norge'] = 'Norway'
 country_map['Norsk'] = 'Norway'
 country_map['Ukrania'] = 'Ukraine'
 country_map['Norway, but lived in the UK from age 3-10'] = 'Norway'
-data['birth_country']= data['birth_country'].map(country_map)
+data['Birth Country']= data['Birth Country'].map(country_map)
 
 # Fix language
 language_map = dict()
-for language in data['first_language'].unique():
+for language in data['First Language'].unique():
     language_map[language] = language
 language_map['Finnisjh'] = 'Finnish'
 language_map['Ukraine'] = 'Ukrainian'
@@ -65,7 +65,7 @@ language_map['Engelsk',] = 'English'
 language_map['Ukranian'] = 'Ukrainian'
 language_map['English British'] = 'English'
 language_map['Norsk'] = 'Norwegian'
-data['first_language'] = data['first_language'].map(language_map)
+data['First Language'] = data['First Language'].map(language_map)
 
 data.columns
 
