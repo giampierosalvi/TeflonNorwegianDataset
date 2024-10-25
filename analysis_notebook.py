@@ -67,9 +67,9 @@ language_map['English British'] = 'English'
 language_map['Norsk'] = 'Norwegian'
 data['first_language'] = data['first_language'].map(language_map)
 
-data
+data.columns
 
-uttdata = pd.read_csv('~/corpora/teflon_no/assessments.csv')
+uttdata = pd.read_csv('data/assessments.csv')
 
 uttdata
 
@@ -77,12 +77,28 @@ uttdata['Speaker ID'] = [fn.split('_')[0] for fn in uttdata['File name']]
 
 uttdata
 
+# count occurrences of each score for each speaker
 scorehist = uttdata.groupby(['Speaker ID', 'Score']).size()
+scorehist = scorehist.to_frame(name='count').reset_index()
+# convert to table format and fill missing data with zeros
+scorehist = scorehist.pivot(index = 'Speaker ID', columns='Score', values='count').fillna(0).astype('int')
+column_names = list()
+for score in range(6):
+    column_names.append('Score '+str(score))
+# rename columns
+scorehist.columns = pd.Index(column_names)
+# convert index to column
+scorehist = scorehist.reset_index()
 
-scoremeans = uttdata.groupby(['Speaker ID'])['Score'].mean()
-scoremeans
+data
 
-scorehist.to_frame(name='count') #.pivot(index = 'Speaker ID', columns='Score', values='count')
+data2 = pd.merge(data, scorehist, on='Speaker ID')
+data2
+
+df = scorehist.to_frame(name='count')
+df['colindex'] = df.index
+df = df.reset_index()#.columns #.
+df.pivot(index = 'Speaker ID', columns='Score', values='count')
 
 uttdata.pivot(index='Speaker ID', columns='Score')
 
