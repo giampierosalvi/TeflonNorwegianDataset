@@ -71,11 +71,7 @@ data.columns
 
 uttdata = pd.read_csv('data/assessments.csv')
 
-uttdata
-
 uttdata['Speaker ID'] = [fn.split('_')[0] for fn in uttdata['File name']]
-
-uttdata
 
 # count occurrences of each score for each speaker
 scorehist = uttdata.groupby(['Speaker ID', 'Score']).size()
@@ -90,16 +86,8 @@ scorehist.columns = pd.Index(column_names)
 # convert index to column
 scorehist = scorehist.reset_index()
 
+# merge speaker information with per-speaker assessment information
+data = pd.merge(data, scorehist, on='Speaker ID')
 data
-
-data2 = pd.merge(data, scorehist, on='Speaker ID')
-data2
-
-df = scorehist.to_frame(name='count')
-df['colindex'] = df.index
-df = df.reset_index()#.columns #.
-df.pivot(index = 'Speaker ID', columns='Score', values='count')
-
-uttdata.pivot(index='Speaker ID', columns='Score')
 
 
