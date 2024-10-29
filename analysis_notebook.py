@@ -126,9 +126,29 @@ N_test = 8            # desired number of speakers in the test set
 # define speaker classes and count number of speakers per class
 spk_class = dict()
 count = dict()
+lang_class = { # L1: mother tongue Norwegian, CL2: common foreign, UL2: uncommon foreign
+    'Norwegian': 'Nor',
+    'Ukrainian': 'Ukr',
+    'English': 'Eng',
+    'Russian': 'CL2',
+    'Finnish': 'CL2',
+    'Estonian': 'UL2',
+    'Persian': 'UL2',
+    'Urdu': 'UL2',
+    'Albanian': 'UL2',
+    'Vietnamese': 'UL2',
+    'Dutch': 'UL2',
+    'Mandarin': 'UL2',
+    'French': 'UL2'
+}
+trainset = dict()
 for index, row in datafull.iterrows():
-    lang_bg = 'L1' if row['First Language']=='Norwegian' else 'L2'
-    cl = '_'.join((lang_bg, row['Gender'], row['Age Range'], row['Score Range']))
+    # first move all speakers with very uncommon language background to the training set
+    if lang_class[row['First Language']] == 'UL2':
+        trainset[row['Speaker ID']] = True
+        continue
+    #lang_bg = 'L1' if row['First Language']=='Norwegian' else 'L2'
+    cl = '_'.join((lang_class[row['First Language']], row['Gender'], row['Age Range'], row['Score Range']))
     spk_class[row['Speaker ID']] = cl
     if cl in count.keys():
         count[cl] += 1
@@ -141,7 +161,6 @@ diff = dict()
 for cl in count.keys():
     optimal[cl] = count[cl]*N_test/N
     diff[cl] = count[cl]-optimal[cl]
-trainset = dict()
 # iteratively remove speakers from the test set until desired #speakers is reached
 random.seed(10)
 while sum(count.values()) > N_test:
@@ -205,7 +224,7 @@ axs[1].set_title('Age Distribution (%)')
 plt.show()
 
 fig, axs = plt.subplots(1, 2, figsize=(12, 4))
-languages = ['Norwegian', 'Ukrainian', 'English', 'Russian', 'Finnish',
+languages = ['Norwegian', 'English', 'Ukrainian', 'Russian', 'Finnish',
        'Persian', 'Urdu', 'Albanian', 'Vietnamese',
        'Dutch', 'Mandarin', 'French', 'Estonian']
 sns.countplot(data=uttdata, x='First Language', order=languages, hue='Partition', hue_order=['train', 'test'], ax=axs[0])
