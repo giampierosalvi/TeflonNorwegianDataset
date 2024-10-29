@@ -18,6 +18,8 @@
 
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
+import random
 
 column_names = ['Submission ID', 'Time', 'Agreement', 'Speaker ID', 'Age', 'Current Grade', 'Gender', 'Birth Country', 'Immigration Age', 'Exposed To Dialect Oslo', 'Exposed To Dialect Other', 'Exposed To Dialect Region', 'First Language', 'Second Language', 'Third Language', 'Fourth Language', 'First Language Level', 'Second Language Level', 'Third Language Level', 'Fourth Language Level', 'Used Languages', 'First Language Use', 'Second Language Use', 'Third Language Use', 'Fourth Language Use', 'Answer Time ms']
 data = pd.read_excel('data/Participant_Information_anonymised.xlsx', names=column_names)
@@ -42,7 +44,7 @@ gender_map = {
     'Gutt': 'M',
     'Jente': 'F'
 }
-data['gender'] = data['Gender'].map(gender_map)
+data['Gender'] = data['Gender'].map(gender_map)
 #data['gender'].unique()
 
 # Fix country
@@ -55,6 +57,14 @@ country_map['Ukrania'] = 'Ukraine'
 country_map['Norway, but lived in the UK from age 3-10'] = 'Norway'
 data['Birth Country']= data['Birth Country'].map(country_map)
 
+# Fix Speaker ID
+speaker_id_map = dict()
+for id in data['Speaker ID']:
+    speaker_id_map[id] = id
+speaker_id_map['d18/p03'] = 'd18'
+speaker_id_map['d19/p04'] = 'd19'
+data['Speaker ID'] = data['Speaker ID'].map(speaker_id_map)
+
 # Fix language
 language_map = dict()
 for language in data['First Language'].unique():
@@ -64,10 +74,12 @@ language_map['Ukraine'] = 'Ukrainian'
 language_map['Engelsk',] = 'English'
 language_map['Ukranian'] = 'Ukrainian'
 language_map['English British'] = 'English'
+language_map['Engelsk'] = 'English'
 language_map['Norsk'] = 'Norwegian'
 data['First Language'] = data['First Language'].map(language_map)
 
-data.columns
+print(data.columns)
+print(data['Speaker ID'])
 
 uttdata = pd.read_csv('data/assessments.csv')
 
@@ -92,6 +104,106 @@ scorehist.boxplot()
 datafull = pd.merge(data, scorehist, on='Speaker ID')
 datafull.columns
 
-datafull['Score 0'].sum()
+
+# calculate average score
+def countedAverage(counts):
+    values = np.arange(len(counts))+1
+    N = counts.sum()
+    return np.inner(values, counts)/N
+datafull['Average Score'] = datafull[['Score 1', 'Score 2', 'Score 3', 'Score 4', 'Score 5']].apply(countedAverage, axis = 1)
+
+# assign each speaker to a quartile based on average score
+#datafull['Score Range'] = pd.qcut(datafull['Average Score'], q=4, labels=['low', 'low_med', 'high_med', 'high'])
+#datafull['Score Range'] = pd.qcut(datafull['Average Score'], q=3, labels=['low', 'med', 'high'])
+datafull['Score Range'] = pd.qcut(datafull['Average Score'], q=2, labels=['low', 'high'])
+
+# group age ranges
+datafull['Age Range'] = pd.qcut(datafull['Age'], q=2, labels=['4-9', '10-12'])
+#datafull = datafull.set_index('Speaker ID', drop=False)
+
+N = datafull.shape[0] # total number of speakers
+N_test = 8            # desired number of speakers in the test set
+# define speaker classes and count number of speakers per class
+spk_class = dict()
+count = dict()
+for index, row in datafull.iterrows():
+    lang_bg = 'L1' if row['First Language']=='Norwegian' else 'L2'
+    cl = '_'.join((lang_bg, row['Gender'], row['Age Range'], row['Score Range']))
+    spk_class[row['Speaker ID']] = cl
+    if cl in count.keys():
+        count[cl] += 1
+    else:
+        count[cl] = 1
+print(count)
+# Generate optimum (non integer) speaker distribution
+optimal = dict()
+diff = dict()
+for cl in count.keys():
+    optimal[cl] = count[cl]*N_test/N
+    diff[cl] = count[cl]-optimal[cl]
+trainset = dict()
+# iteratively remove speakers from the test set until desired #speakers is reached
+random.seed(10)
+while sum(count.values()) > N_test:
+    top = max(diff, key=diff.get) # select the class with largest difference between #speakers and optimum
+    # select all speakers that correspond to this class but are not already in the training set
+    spk_set = [k for k, v in spk_class.items() if v == top and not k in trainset.keys()]
+    # select one such speaker at random
+    sp = random.choice(spk_set)
+    trainset[sp] = True
+    count[top] = count[top]-1
+    diff[top] = count[top]-optimal[top]
+trainids = list(trainset.keys())
+trainids.sort()
+testids = list(set(datafull['Speaker ID']) - set(trainset.keys()))
+testids.sort()
+print('Training set: ', trainids)
+print('Test set: ', testids)
+
+with open('training_set.lst', 'w') as outfile:
+    outfile.write('\n'.join(trainids))
+    outfile.write('\n')
+with open('test_set.lst', 'w') as outfile:
+    outfile.write('\n'.join(testids))
+    outfile.write('\n')
+
+diff
+
+# add infromation about training and test set to uttdata
+id2age = dict()
+id2fl = dict()
+for index, row in datafull.iterrows():
+    id2age[row['Speaker ID']] = row['Age']
+    id2fl[row['Speaker ID']] = row['First Language']
+partition = list()
+age = list()
+first_lang = list()
+for index, row in uttdata.iterrows():
+    partition.append('train' if row['Speaker ID'] in trainids else 'test')
+    age.append(id2age[row['Speaker ID']])
+    first_lang.append(id2fl[row['Speaker ID']])
+uttdata['Partition'] = partition
+uttdata['Age'] = age
+uttdata['First Language'] = first_lang
+
+import seaborn as sns
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+sns.countplot(data=uttdata, x='Score', hue='Partition', ax=axs[0])
+axs[0].set_title('Score Distribution')
+sns.countplot(data=uttdata, x='Score', hue='Partition', stat='percent', ax=axs[1])
+axs[1].set_title('Score Distribution (%)')
+plt.show()
+
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+sns.countplot(data=uttdata, x='Age', hue='Partition', ax=axs[0])
+sns.countplot(data=uttdata, x='Age', hue='Partition', stat='percent', ax=axs[1])
+plt.show()
+
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+sns.countplot(data=uttdata, x='First Language', hue='Partition', ax=axs[0])
+axs[0].tick_params(axis='x', rotation=90)
+sns.countplot(data=uttdata, x='First Language', hue='Partition', stat='percent', ax=axs[1])
+axs[1].tick_params(axis='x', rotation=90)
+plt.show()
 
 
