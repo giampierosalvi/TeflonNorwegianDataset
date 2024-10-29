@@ -208,7 +208,7 @@ uttdata['First Language'] = first_lang
 import seaborn as sns
 fig, axs = plt.subplots(1, 2, figsize=(12, 4))
 sns.countplot(data=uttdata, x='Score', hue='Partition', hue_order=['train', 'test'], ax=axs[0])
-axs[0].set_title('Score Distribution')
+axs[0].set_title('Score Distribution (counts)')
 prop_uttdata = (uttdata['Score'].groupby(uttdata['Partition']).value_counts(normalize=True).rename('percentage').reset_index())
 #sns.countplot(data=uttdata, x='Score', hue='Partition', stat='percent', ax=axs[1])
 sns.barplot(data=prop_uttdata, x='Score', y='percentage', hue='Partition', hue_order=['train', 'test'], ax=axs[1])
@@ -217,7 +217,7 @@ plt.show()
 
 fig, axs = plt.subplots(1, 2, figsize=(12, 4))
 sns.countplot(data=uttdata, x='Age', hue='Partition', hue_order=['train', 'test'], ax=axs[0])
-axs[0].set_title('Age Distribution')
+axs[0].set_title('Age Distribution (counts)')
 prop_uttdata = (uttdata['Age'].groupby(uttdata['Partition']).value_counts(normalize=True).rename('percentage').reset_index())
 sns.barplot(data=prop_uttdata, x='Age', y='percentage', hue='Partition', hue_order=['train', 'test'], ax=axs[1])
 axs[1].set_title('Age Distribution (%)')
@@ -229,13 +229,13 @@ languages = ['Norwegian', 'English', 'Ukrainian', 'Russian', 'Finnish',
        'Dutch', 'Mandarin', 'French', 'Estonian']
 sns.countplot(data=uttdata, x='First Language', order=languages, hue='Partition', hue_order=['train', 'test'], ax=axs[0])
 axs[0].tick_params(axis='x', rotation=90)
-axs[0].set_title('First Language Distribution')
+axs[0].set_title('First Language Distribution (counts)')
 prop_uttdata = (uttdata['First Language'].groupby(uttdata['Partition']).value_counts(normalize=True).rename('percentage').reset_index())
 sns.barplot(data=prop_uttdata, x='First Language', order=languages, y='percentage', hue='Partition', hue_order=['train', 'test'], ax=axs[1])
 axs[1].tick_params(axis='x', rotation=90)
 axs[1].set_title('First Language Distribution (%)')
 plt.show()
 
-uttdata['First Language'].unique()
+count
 
 
