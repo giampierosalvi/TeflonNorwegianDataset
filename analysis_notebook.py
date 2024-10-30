@@ -79,7 +79,6 @@ language_map['Norsk'] = 'Norwegian'
 data['First Language'] = data['First Language'].map(language_map)
 
 print(data.columns)
-print(data['Speaker ID'])
 
 uttdata = pd.read_csv('data/assessments.csv')
 
@@ -99,6 +98,7 @@ scorehist.columns = pd.Index(column_names)
 scorehist = scorehist.reset_index()
 
 scorehist.boxplot()
+plt.show()
 
 # merge speaker information with per-speaker assessment information
 datafull = pd.merge(data, scorehist, on='Speaker ID')
@@ -130,8 +130,8 @@ lang_class = { # L1: mother tongue Norwegian, CL2: common foreign, UL2: uncommon
     'Norwegian': 'Nor',
     'Ukrainian': 'Ukr',
     'English': 'Eng',
-    'Russian': 'CL2',
-    'Finnish': 'CL2',
+    'Russian': 'Rus',
+    'Finnish': 'UL2',
     'Estonian': 'UL2',
     'Persian': 'UL2',
     'Urdu': 'UL2',
@@ -154,7 +154,8 @@ for index, row in datafull.iterrows():
         count[cl] += 1
     else:
         count[cl] = 1
-print(count)
+for k, v in count.items():
+    print("{:<20} {:<10}".format(k, v))
 # Generate optimum (non integer) speaker distribution
 optimal = dict()
 diff = dict()
@@ -178,6 +179,8 @@ testids = list(set(datafull['Speaker ID']) - set(trainset.keys()))
 testids.sort()
 print('Training set: ', trainids)
 print('Test set: ', testids)
+for k, v in count.items():
+    print("{:<20} {:<10}".format(k, v))
 
 with open('training_set.lst', 'w') as outfile:
     outfile.write('\n'.join(trainids))
@@ -236,6 +239,40 @@ axs[1].tick_params(axis='x', rotation=90)
 axs[1].set_title('First Language Distribution (%)')
 plt.show()
 
-count
+# assign random file name
+names = ["{:04}.wav".format(x) for x in np.arange(10000)]
+random.seed(0)
+random.shuffle(names)
+nameMap = dict()
+idx = 0
+for original in uttdata['File name'].unique():
+    nameMap[original] = names[idx]
+    idx +=1
+fileNameSeries = list()
+for index, row in uttdata.iterrows():
+    fileNameSeries.append(nameMap[row['File name']])
+uttdata['Challenge File Name'] = fileNameSeries
 
+# get all scores for each file
+scores = dict()
+for index, row in uttdata.iterrows():
+    if row['File name'] not in scores.keys():
+        scores[row['File name']] = list()
+    scores[row['File name']].append(row['Score'])
+# convert scores lists into single scores
+to_remove = list()
+for fn in scores.keys():
+    if 0 in scores[fn]:
+        to_remove.append(fn)
+    scores[fn] = int(np.rint(np.array(scores[fn]).mean()))
+for fn in to_remove:
+    del scores[fn]
 
+scores
+
+uttdata[uttdata['File name'] == 'd16_smart.wav']['Score']
+
+uttdata
+
+# +
+# put data on https://zenodo.org/
