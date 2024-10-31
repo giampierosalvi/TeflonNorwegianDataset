@@ -268,11 +268,40 @@ for fn in scores.keys():
 for fn in to_remove:
     del scores[fn]
 
-scores
+partitionMap = dict()
+for id in trainids:
+    partitionMap[id] = 'train'
+for id in testids:
+    partitionMap[id] = 'test'
 
-uttdata[uttdata['File name'] == 'd16_smart.wav']['Score']
+# create datasets
+import os
+import shutil
+for newpath in ['TeflonChallenge/train', 'TeflonChallenge/test']:
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+#train_df = pd.DataFrame(columns=['File Name', 'Word', 'Score'])
+#public_test_df = pd.DataFrame(columns=['File Name', 'Word'])
+#private_test_df = pd.DataFrame(columns=['File Name', 'Word', 'Score'])
+train_df = list()
+public_test_df = list()
+private_test_df = list()
+for fn in scores.keys():
+    outfn = nameMap[fn]
+    spkrid, word = fn[:-4].split('_')
+    partition = partitionMap[spkrid]
+    outdir = 'TeflonChallenge/' + partition
+    shutil.copy('speech/'+fn, outdir+'/'+outfn)
+    if partition == 'train':
+        train_df.append({'File Name': outfn, 'Word': word, 'Score': scores[fn]})
+    else:
+        public_test_df.append({'File Name': outfn, 'Word': word})
+        private_test_df.append({'File Name': outfn, 'Word': word, 'Score': scores[fn]})
+pd.DataFrame(train_df).to_csv('TeflonChallenge/train.csv', index=False)
+pd.DataFrame(public_test_df).to_csv('TeflonChallenge/test.csv', index=False)
+pd.DataFrame(private_test_df).to_csv('private_test.csv', index=False)
 
-uttdata
+
 
 # +
 # put data on https://zenodo.org/
