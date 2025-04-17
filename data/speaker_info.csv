@@ -1,0 +1,53 @@
+,Submission ID,Time,Agreement,Speaker ID,Age,Current Grade,Gender,Birth Country,Immigration Age,Exposed To Dialect Oslo,Exposed To Dialect Other,Exposed To Dialect Region,First Language,Second Language,Third Language,Fourth Language,First Language Level,Second Language Level,Third Language Level,Fourth Language Level,Used Languages,First Language Use,Second Language Use,Third Language Use,Fourth Language Use,Answer Time ms,Score 0,Score 1,Score 2,Score 3,Score 4,Score 5
+0,21533872,2022-06-08 17:27:08,I agree,a01,7,1,F,Finland,-,,Another dialect,Only Finnish,Finnish,-,-,-,Advanced,,,,Finnish,100,,,,2935462,0,11,62,86,41,17
+1,21955714,2022-07-09 18:15:40,I agree,a02,6,0,F,Estonia,,,Another dialect,none,Estonian,Swedish,Finnish,,Advanced,Advanced,Advanced,,"Swedish, Estonian",40,40,20,,265365,0,2,27,109,63,16
+2,21954193,2022-07-09 12:14:51,I agree,a03,8,1,F,Finland,,,Another dialect,none,Finnish,Estonian,German,English,Advanced,Advanced,Basic,Basic,Finnish,95,3,1,1,160846,4,9,46,91,59,8
+3,21955715,2022-07-09 18:17:02,I agree,a04,8,2,M,Estonia,,,Another dialect,none,Estonian,Swedish,Finnish,,Advanced,Advanced,Advanced,,"Estonian, Swedish",40,40,20,,18641712,0,0,18,95,83,21
+4,21955650,2022-07-09 18:09:16,I agree,a05,10,5,M,Ukraine,,,Another dialect,none,Ukrainian,Russian,,,Advanced,Advanced,,,Ukraine,90,10,,,168337,3,2,12,100,68,32
+5,21955654,2022-07-09 18:10:54,I agree,a06,9,4,M,Ukraine,,,Another dialect,none,Russian,ukraine,,,Advanced,Advanced,,,Russian,90,10,,,91900,0,16,38,86,51,26
+6,21956020,2022-07-09 20:02:03,I agree,a07,5,0,F,Ukraine,-,,Another dialect,none,Russian,Ukraine,,,Advanced,Advanced,,,95,5,,,,135722,4,37,90,59,21,6
+7,21961353,2022-07-10 12:51:51,I agree,a08,9,2,F,Ukraine,,,Another dialect,none,Ukrainian,Russian,,,Advanced,Advanced,,,"Russian, ukraine",50,50,,,108065,0,3,33,92,56,33
+8,21962064,2022-07-10 13:34:43,I agree,a09,9,3,M,Estonia,,,Another dialect,none,Estonian,,,,Advanced,,,,Estonian,100,,,,122916,0,3,39,92,67,16
+9,21980660,2022-07-11 15:55:40,I agree,a10,10,4,M,Finland,-,,Another dialect,-,Finnish,Estonian,German,English,Advanced,Advanced,Intermediate,Intermediate,Finnishn Estonian,90,5,3,2,107065,0,1,34,106,52,24
+10,22095226,2022-07-24 14:53:20,I agree,a11,6,0,F,Ukraine,-,,Another dialect,none,Ukrainian,Russian,,,Advanced,Intermediate,,,Ukrainian,90,10,,,89090,1,27,70,79,29,11
+11,22272613,2022-08-10 14:01:07,I agree,a12,8,2,M,Ukraine,,,Another dialect,none,Ukrainian,Russian,,,Advanced,Advanced,,,"Ukraine, russian",90,10,,,90529,29,17,70,74,23,4
+12,21989860,2022-07-12 13:14:07,I agree,a13,5,0,M,Estonia,,Oslo dialect,,,Russian,Chinese,English,Estonian,Advanced,Intermediate,Advanced,Intermediate,"Russian, Chinese",60%,30%,10%,0%,432456,11,18,60,84,34,10
+13,24247798,2022-11-17 15:51:46,I agree,a14,10,5,M,Belgium,10,Oslo dialect,,,Dutch,English,Korean,,Advanced,Advanced,Basic,,"Dutch, English",75,20,5,,441788,0,0,16,92,94,64
+14,24247828,2022-11-17 15:53:38,I agree,a15,12,7,M,"China, Hong Kong",12,Oslo dialect,,,Mandarin,English,Norsk,,Advanced,Intermediate,Basic,,Mandarin,98,1,1,,260050,0,5,35,132,65,29
+15,24247915,2022-11-17 15:58:51,I agree,a16,12,7,M,Irak,12,Oslo dialect,,,English,Kurdish (Sorani),Norwegian,,Advanced,Advanced,Intermediate,,"Kurdish (Sorani), English",60,35,5,,306458,1,1,7,68,74,115
+16,24247962,2022-11-17 16:01:55,I agree,a17,12,7,F,United Arab Emirates,11,Oslo dialect,,,Urdu,English,,,Advanced,Advanced,,,"Urdu, English",80,20,,,176501,0,0,15,94,97,60
+17,24247984,2022-11-17 16:03:50,I agree,a18,12,7,F,Switzerland,12,Oslo dialect,,,French,English,Norwegian,Dutch,Advanced,Advanced,Basic,Basic,French,100,,,,105780,1,0,2,66,109,88
+18,24248066,2022-11-17 16:09:09,I agree,a19,12,7,F,Norway,"Has lived in Canada the last 6 years, came back to Norway 6months ago",Oslo dialect,,,English,Somalisk,,,Advanced,Intermediate,,,Engelsk og Somalisk,80,20,,,309819,0,0,16,72,87,91
+19,24248092,2022-11-17 16:10:46,I agree,a20,10,5,F,Norway,"Has lived in Canada the last 6 years, came back to Norway 6months ago",Oslo dialect,,,English,Somalisk,,,Advanced,Intermediate,,,Engelsk og Somalisk,80,20,,,88429,0,0,20,81,88,77
+20,24248137,2022-11-17 16:14:32,I agree,a21,11,57a,M,Vietnam,11,Oslo dialect,,,Vietnamese,English,Norwegian,,Advanced,Basic,Basic,,Vietnamese,90,0,10,,220450,3,0,36,116,91,20
+21,24248166,2022-11-17 16:17:44,I agree,a22,11,6,M,Lesotho,11,Oslo dialect,,,English,Somali,,,Advanced,Basic,,,Engelsk,70,30,,,184413,2,0,11,110,88,55
+22,24248197,2022-11-17 16:20:39,I agree,a23,12,7,M,Iran,12,Oslo dialect,,,Persian,English,Greek,Norwegian,Intermediate,Advanced,Basic,Basic,"English, Persian",40,50,0,10,1723966,0,0,22,95,88,61
+23,24745557,2022-12-15 13:38:43,I agree,a25,11,6,M,USA,11,Oslo dialect,,,English,,,,Advanced,,,,"English, Norwegian",95,5,,,104266,1,7,47,122,72,17
+24,24745754,2022-12-15 13:42:57,I agree,a26,12,7,M,Ukraine,12 (7 months ago),Oslo dialect,,,Ukrainian,Russian,English,Norsk,Advanced,Advanced,Intermediate,Basic,All,60,15,15,10,362224,0,1,40,127,90,8
+25,24745904,2022-12-15 13:44:52,I agree,a27,11,6,M,Ukraine,11 (6 weeks ago),Oslo dialect,,,Russian,Ukrainian,English,,Advanced,Advanced,Intermediate,,"Russian, Ukranian, English",75,20,5,,479280,0,4,31,108,77,46
+26,24746099,2022-12-15 13:47:03,I agree,a28,12,7,F,Indonesia,12 (1 month ago),Oslo dialect,,,English,Bahasa/Indonesian,,,Advanced,Intermediate,,,Bahasa and English,50,50,,,115565,0,0,21,120,96,29
+27,24745613,2022-12-15 13:40:39,I agree,a29,11,6,F,USA,10 (2 months ago),Oslo dialect,,,English,,,,Advanced,,,,"English, Norwegian",95,5,,,222671,0,0,27,113,87,39
+28,24746727,2022-12-15 13:55:16,I agree,a30,11,57a,F,Ukraine,10 (9 months ago),Oslo dialect,,,Ukrainian,English,Norsk,Russian,Advanced,Intermediate,Basic,Intermediate,Ukranian,100,,,,609854,0,1,17,106,100,42
+29,24746960,2022-12-15 14:04:55,I agree,a31,12,7,M,Albania,12 (8 months ago),Oslo dialect,,,Albanian,English,Norwegian,,Advanced,Intermediate,Basic,,"Albanian, English",50,50,,,3522240,1,0,16,71,55,123
+30,24746932,2022-12-15 14:02:57,I agree,a32,12,7,F,Ukraine,11 (10 months),Oslo dialect,,,Ukrainian,Russian,English,Norwegian,Advanced,Advanced,Intermediate,Intermediate,Russian,Russian 75%,Ukranian 20%,Norwegian 5%,,180613,0,0,18,95,103,50
+31,24746855,2022-12-15 13:59:43,I agree,a33,11,6,F,Norway,10 (a few months ago),Oslo dialect,,,English,Norwegian,,,Advanced,Intermediate,,,"English, Norwegian",90,10,,,881837,0,0,9,44,81,132
+32,24746797,2022-12-15 13:57:54,I agree,a34,10,57a,F,Russia,10 (3-ish months in Norway),Oslo dialect,,,Russian,English,Ukranian,Norwegian,Advanced,Intermediate,Basic,Basic,"Russian, English, Norwegian",95,4,1,,769551,0,1,32,118,85,30
+33,21724224,2022-06-20 08:48:15,Godta,d01,8,3,M,Norway,,Oslo-dialekt,Annen dialekt,Østfold,Norwegian,,,,Avansert,,,,Norsk,100,,,,311888,2,0,1,22,27,165
+34,21633280,2022-06-14 06:47:33,Godta,d02,8,2,F,Norway,,,Annen dialekt,Østfold,Norwegian,Engelsk,,,Avansert,Grunnleggende,,,Norsk,90,10,,,357068,6,1,5,23,34,148
+35,21620309,2022-06-13 11:09:22,Godta,d03,8,2,M,Norway,,,Annen dialekt,Østfold,Norwegian,,,,Avansert,,,,Norsk,Norsk,,,,198911,1,0,1,25,45,145
+36,21621466,2022-06-13 11:51:49,Godta,d04,7,1. trinn,F,Norway,,Oslo-dialekt,,,Norwegian,,,,Middels,,,,Norsk,100%,,,,145308,0,0,0,12,24,181
+37,21631366,2022-06-13 22:47:14,Godta,d05,6,1,F,Norway,,,Annen dialekt,Østfold,Norwegian,Usbekisk (forstår deler/snakker lite),Engelsk,,Avansert,Grunnleggende,Grunnleggende,,"Norsk, usbekisk, engelsk",60,20,20,,96239,4,0,0,23,27,163
+38,21752229,2022-06-21 19:21:15,Godta,d06,6,Barnehagen,F,Norway,,,Annen dialekt,Østfold,Norwegian,,,,Avansert,,,,Norsk,Norsk,,,,240090,0,0,3,27,47,140
+39,21673639,2022-06-15 16:58:22,Godta,d07,8,2,F,Norway,,Oslo-dialekt,Annen dialekt,Østfold,Norwegian,,,,Avansert,,,,Norsk,Norsk,,,,675040,1,1,1,10,52,152
+40,21753815,2022-06-21 21:44:42,Godta,d08,5,Hvitveisen,M,Norway,,,Annen dialekt,Østfold,Norwegian,,,,Avansert,,,,Norsk,100%,,,,309491,10,8,17,66,63,53
+41,21791836,2022-06-24 10:11:51,Godta,d09,6,1,M,Norway,,Oslo-dialekt,,,Norwegian,,,,Avansert,,,,Norsk bokmål,100,,,,162244,38,3,12,41,42,81
+42,21811087,2022-06-26 11:01:08,Godta,d10,9,4 trinn,M,Norway,,Oslo-dialekt,,,Norwegian,,,,Avansert,,,,Norsk,100%,,,,242323,1,0,4,32,34,146
+43,21798244,2022-06-24 23:06:53,Godta,d11,4,Går i barnehage,F,Norway,,Oslo-dialekt,,,Norwegian,,,,Avansert,,,,Norsk,100%,,,,140552,4,2,2,31,42,136
+44,21798232,2022-06-24 23:04:16,Godta,d12,6,1.,M,Norway,,Oslo-dialekt,,,Norwegian,,,,Avansert,,,,Norsk,100%,,,,537439,0,0,1,25,35,156
+45,21631351,2022-06-13 22:45:08,Godta,d13,9,3,M,Norway,,,Annen dialekt,Østfold,Norwegian,Usbekisk (forstår deler/snakker lite),Engelsk,,Avansert,Grunnleggende,Grunnleggende,,"Norsk, usbekisk, engelsk",60,20,20,,324247,4,1,5,21,32,154
+46,21854114,2022-06-29 11:43:07,Godta,d14,5,Barnehage,F,Norway,,,Annen dialekt,Østland,Norwegian,Engelsk,,,Middels,Grunnleggende,,,Norsk,95%,5%,,,307716,2,0,8,55,52,100
+47,21854148,2022-06-29 11:46:25,Godta,d15,8,2,M,Norway,,,Annen dialekt,Østlandet,Norwegian,Engelsk,,,Avansert,Middels,,,Norsk,90%,10%,,,190998,0,0,1,16,52,148
+48,21917922,2022-07-05 15:35:42,Godta,d16,5,1.,F,Norway,,Oslo-dialekt,Annen dialekt,Bergen,Norwegian,,,,Avansert,,,,Norsk,100%,,,,159675,3,1,5,24,45,139
+49,21917940,2022-07-05 15:38:51,Godta,d17,7,2,F,Norway,,Oslo-dialekt,,,Norwegian,,,,Avansert,,,,norsk,100%,,,,176588,3,3,2,12,44,155
+50,20559398,2022-04-22 09:07:24,Godta,d18,9,4. trinn,M,Norway,,Oslo-dialekt,,,Norwegian,Litt engelsk (fra gaming og skole),bittelitt finsk,,Avansert,Grunnleggende,,,Norsk,95%,5% engelsk,,,153406,1,0,0,17,19,178
+51,20559362,2022-04-22 09:04:26,Godta,d19,8,2. klasse,M,Norway,,Oslo-dialekt,,,Norwegian,bittelita finsk (ikke mye),bittelita engelsk (fra spill og skole),,Avansert,,,,Norsk,100,,,,3597090,26,4,24,67,32,64
