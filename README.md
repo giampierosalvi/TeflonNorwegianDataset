@@ -47,3 +47,14 @@ You can play the examples and show the assessments with:
 ```
 python3 play_examples.py assessments.csv speech
 ```
+
+## NOCASA Challenge
+First fix the speaker information in `data/Participant_Information_anonymised.xlsx` and add per-speaker score information
+```
+python3 fixSpeakerInformation.py
+```
+the result is stored in `data/speaker_info.csv`.
+
+Then define training and test set based on speaker information.
+```
+```
