@@ -87,8 +87,8 @@ scorehist.columns = pd.Index(column_names)
 # convert index to column
 scorehist = scorehist.reset_index()
 
-#scorehist.boxplot()
-#plt.show()
+# scorehist.boxplot()
+# plt.show()
 
 # merge speaker information with per-speaker assessment information
 datafull = pd.merge(data, scorehist, on='Speaker ID')
