@@ -269,7 +269,120 @@ pd.DataFrame(train_df).to_csv('TeflonChallenge/train.csv', index=False)
 pd.DataFrame(public_test_df).to_csv('TeflonChallenge/test.csv', index=False)
 pd.DataFrame(private_test_df).to_csv('private_test.csv', index=False)
 
+# soxi TeflonChallenge/train/*.wav | grep Duration | gawk '{print $5}' | grep -v files: > train_len.txt
+# soxi TeflonChallenge/test/*.wav | grep Duration | gawk '{print $5}' | grep -v files: > test_len.txt
+train_len = np.loadtxt('train_len.txt')
+test_len = np.loadtxt('test_len.txt')
+print('train len (max, min):', train_len.min()/16000, train_len.max()/16000, 'test len (min, max):', test_len.min()/16000, test_len.max()/16000)
+
+xsampa2ipa = {
+    'r': 'r',
+    '@': 'ə',
+    'l': 'l',
+    's': 's',
+    'k': 'k',
+    't': 't',
+    'A': 'ɑ',
+    'n': 'n',
+    'b': 'b',
+    't`': 'ʈ',
+    'n`': 'ɳ',
+    '2:': 'øː',
+    'p': 'p',
+    'f': 'f',
+    'I': 'ɪ',
+    '{:': 'æː',
+    'S': 'ʃ',
+    '}:': 'ʉː',
+    'g': 'g:',
+    'y:': 'y:',
+    'A:': 'ɑː',
+    'v': 'v',
+    'm': 'm',
+    'Y': 'ʏ',
+    'u0': 'ʉ', # not sure about this one, why not '}'?
+    'd': 'd',
+    'j': 'j',
+    'O': 'ɔ',
+    'u:': 'u:',
+    'i:': 'i:',
+    '9': 'œ',
+    'g': 'g',
+    'h': 'h',
+    '{': 'æ',
+    'N': 'ŋ',
+    'U': 'ʊ',
+    'e:': 'e:',
+    'o:': 'o:',
+    'E': 'ɛ',
+    'C': 'ç',
+    '{I': 'æɪ',
+    'n`=': 'ɳ̩',
+    'Eu0': 'ɛʉ',
+    'n=': 'n̩',
+    's`': 'ʂ',
+    '9Y': 'œʏ'
+}
+xsampa2tipa = {
+    'r': 'r',
+    '@': '@',
+    'l': 'l',
+    's': 's',
+    'k': 'k',
+    't': 't',
+    'A': 'A',
+    'n': 'n',
+    'b': 'b',
+    't`': '\\:t',
+    'n`': '\\:n',
+    '2:': '\\o:',
+    'p': 'p',
+    'f': 'f',
+    'I': 'I',
+    '{:': '\\ae:',
+    'S': 'S',
+    '}:': '0:',
+    'g': 'g:',
+    'y:': 'y:',
+    'A:': 'A:',
+    'v': 'v',
+    'm': 'm',
+    'Y': 'Y',
+    'u0': '0', # not sure about this one, why not '}'?
+    'd': 'd',
+    'j': 'j',
+    'O': 'O',
+    'u:': 'u:',
+    'i:': 'i:',
+    '9': '\\oe',
+    'g': 'g',
+    'h': 'h',
+    '{': '\\ae',
+    'N': 'N',
+    'U': 'U',
+    'e:': 'e:',
+    'o:': 'o:',
+    'E': 'E',
+    'C': '\\c{c}',
+    '{I': '\\ae I',
+    'n`=': '\\:n',
+    'Eu0': 'E0',
+    'n=': '\\s{n}',
+    's`': '\\:s',
+    '9Y': '\\oe Y'
+}
+
+from collections import Counter
+prons = uttdata['Pronunciation'].unique()
+allprons = ' '.join(prons)
+#phone_occur = [xsampa2tipa[ph] for ph in allprons.split(' ')]
+phone_occur = allprons.split(' ')
+#phones = set(allprons.split(' '))
+#print(phones)
+res = Counter(phone_occur)
+for key, val in res.most_common():
+    print('\\textipa{', xsampa2tipa[key], '} &', val, '& ')
+
+plt.hist(test_len, bins = 100)
 
 
-# +
-# put data on https://zenodo.org/
